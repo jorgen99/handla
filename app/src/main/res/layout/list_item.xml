@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="72dp"
+    android:clickable="true">
 
-    <!--An item in the main list -->
-    <TextView
-        android:id="@+id/handla_item"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
+    <!-- background color for left margin -->
+    <View
+        android:id="@+id/item_margin_color"
+        android:layout_alignParentStart="true"
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:background="#dadada"
+        />
+
+    <CheckBox
+        android:id="@+id/item_checkbox"
+        android:layout_width="32dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"/>
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/item_margin_color"
+        android:checked="false"
+        android:padding="16dp"
+        />
 
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_checkbox"
+        android:layout_toEndOf="@+id/item_checkbox"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="48dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:text="Pastaplattor"
+        />
+
+    <TextView
+        android:id="@+id/item_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_text"
+        android:layout_toEndOf="@+id/item_checkbox"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="48dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:text="1 paket"
+        />
     <!--This View serves as a visual divider between list items-->
     <View
         android:layout_width="match_parent"
@@ -20,4 +62,4 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp" />
 
-</LinearLayout>
+</RelativeLayout>

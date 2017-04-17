@@ -1,6 +1,5 @@
 
 
- - [ ] Add checkbox to list item
  - [ ] Text field to enter new items
  - [ ] Testing with espresso
  - [ ] Drive espresso from cucumber
@@ -12,7 +11,6 @@
  - [ ] "Delete all"-button in the "Done" category
  - [ ] Drag and drop handles in list item
  - [ ] Implement drag and drop
- - [ ] Sub-title with quantity in list item
  - [ ] Tap item to view item options
  - [ ] Select category in item options
  - [ ] Select quantity in item option
@@ -26,6 +24,12 @@
  - [ ] Manage cloud sync in menu
  - [ ] Manage sharing in menu
  - [ ] Manage "This week"
+
+* done
+ - [X] Add checkbox to list item
+ - [X] Sub-title with quantity in list item
+
+
 
 * Useful stuff
 

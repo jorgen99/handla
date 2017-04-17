@@ -31,7 +31,7 @@ class HandlaAdapter extends RecyclerView.Adapter<HandlaAdapter.HandlaAdapterView
         return handlaItems == null ? 0 : handlaItems.length;
     }
 
-    public void setHandlaItems(String[] handlaItems) {
+    void setHandlaItems(String[] handlaItems) {
         this.handlaItems = handlaItems;
         notifyDataSetChanged();
     }
@@ -42,7 +42,7 @@ class HandlaAdapter extends RecyclerView.Adapter<HandlaAdapter.HandlaAdapterView
 
         HandlaAdapterViewHolder(View itemView) {
             super(itemView);
-            handlaTextView = (TextView) itemView.findViewById(R.id.handla_item);
+            handlaTextView = (TextView) itemView.findViewById(R.id.item_text);
         }
     }
 }
