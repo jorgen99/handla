@@ -1,0 +1,12 @@
+* Espresso Cheet Sheet
+https://google.github.io/android-testing-support-library/downloads/espresso-cheat-sheet-2.1.0.pdf
+
+* Show hide soft keyboard
+// Show 
+InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
+imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+Hide keyboard:
+
+// Hide 
+InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);

@@ -16,9 +16,8 @@ class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterViewHolder
     @Override
     public ListAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layout = R.layout.list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(layout, viewGroup, false);
+        View view = inflater.inflate(R.layout.list_item, viewGroup, false);
         return new ListAdapterViewHolder(view);
     }
 
@@ -41,6 +40,10 @@ class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterViewHolder
     void addItem(String item) {
         this.handlaItems.addFirst(item);
         notifyDataSetChanged();
+    }
+
+    String itemAt(int position) {
+        return handlaItems.get(position);
     }
 
     class ListAdapterViewHolder extends RecyclerView.ViewHolder {

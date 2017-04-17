@@ -14,6 +14,7 @@
         android:inputType="text"
         android:lines="1"
         android:hint="@string/add_item"
+        android:nextFocusDown="@id/add_item"
         />
 
     <android.support.v7.widget.RecyclerView

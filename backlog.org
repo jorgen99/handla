@@ -28,12 +28,4 @@
 * done
  - [X] Text field to enter new items
  - [X] Add checkbox to list item
- - [X] Sub-title with quantity in list item
-
-
-
-* Useful stuff
-
-Espresso Cheet Sheet
-https://google.github.io/android-testing-support-library/downloads/espresso-cheat-sheet-2.1.0.pdf
-
+ - [X] Sub-title with quantity in list 

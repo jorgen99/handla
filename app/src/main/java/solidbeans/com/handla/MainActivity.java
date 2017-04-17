@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                         v.setText("");
                         return true;
                     }
+//                } else if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_UP) {
+//                    v.requestFocus();
+//                    return true;
                 }
                 return false;
             }
