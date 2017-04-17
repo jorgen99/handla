@@ -1,8 +1,8 @@
 
 
- - [ ] Text field to enter new items
  - [ ] Testing with espresso
  - [ ] Drive espresso from cucumber
+ - [ ] Store list in SQL lite
  - [ ] Typeahead when entering items
  - [ ] Hard-coded categories
  - [ ] Add categories to list
@@ -26,6 +26,7 @@
  - [ ] Manage "This week"
 
 * done
+ - [X] Text field to enter new items
  - [X] Add checkbox to list item
  - [X] Sub-title with quantity in list item
 
