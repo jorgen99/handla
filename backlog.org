@@ -1,0 +1,34 @@
+
+
+ - [ ] Add checkbox to list item
+ - [ ] Text field to enter new items
+ - [ ] Testing with espresso
+ - [ ] Drive espresso from cucumber
+ - [ ] Typeahead when entering items
+ - [ ] Hard-coded categories
+ - [ ] Add categories to list
+ - [ ] "Done" category at the end of list
+ - [ ] Move checked items to the "Done" category
+ - [ ] "Delete all"-button in the "Done" category
+ - [ ] Drag and drop handles in list item
+ - [ ] Implement drag and drop
+ - [ ] Sub-title with quantity in list item
+ - [ ] Tap item to view item options
+ - [ ] Select category in item options
+ - [ ] Select quantity in item option
+ - [ ] Hamburger menu (Navigation drawer)
+ - [ ] Manage categories in menu
+ - [ ] Enter new category
+ - [ ] Drag and drop ordering of categories
+
+
+ - [ ] Manage recipes in menu
+ - [ ] Manage cloud sync in menu
+ - [ ] Manage sharing in menu
+ - [ ] Manage "This week"
+
+* Useful stuff
+
+Espresso Cheet Sheet
+https://google.github.io/android-testing-support-library/downloads/espresso-cheat-sheet-2.1.0.pdf
+

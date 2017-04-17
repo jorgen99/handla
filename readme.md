@@ -19,3 +19,7 @@ Most shopping list apps I've tried have to much stuff going on. Out of Milk is g
 * Add items from one recipe to shoppinglist
 * Compose this weeks menu from recipes
 * Add all items from menu to list
+* Cloud sync for list, recipes and menues
+* Sharing with other users
+
+Did i say "too much going on"...? :)
