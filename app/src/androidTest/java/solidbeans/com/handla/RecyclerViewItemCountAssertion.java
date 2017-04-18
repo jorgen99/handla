@@ -6,10 +6,10 @@ import android.view.View;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-class RecyclerViewItemCountAssertion extends RecyclerViewAssertion {
+public class RecyclerViewItemCountAssertion extends RecyclerViewAssertion {
     private final int expectedCount;
 
-    RecyclerViewItemCountAssertion(int expectedCount) {
+    public RecyclerViewItemCountAssertion(int expectedCount) {
         this.expectedCount = expectedCount;
     }
 

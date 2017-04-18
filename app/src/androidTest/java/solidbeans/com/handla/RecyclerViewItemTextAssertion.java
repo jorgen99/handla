@@ -6,11 +6,11 @@ import android.view.View;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-class RecyclerViewItemTextAssertion extends RecyclerViewAssertion {
+public class RecyclerViewItemTextAssertion extends RecyclerViewAssertion {
     private final String expectedText;
     private int position;
 
-    RecyclerViewItemTextAssertion(int position, String expectedText) {
+    public RecyclerViewItemTextAssertion(int position, String expectedText) {
         this.expectedText = expectedText;
         this.position = position;
     }
