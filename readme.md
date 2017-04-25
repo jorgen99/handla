@@ -23,3 +23,10 @@ Most shopping list apps I've tried have to much stuff going on. Out of Milk is g
 * Sharing with other users
 
 Did i say "too much going on"...? :)
+
+# Acknowledgements
+When setting up the Cucumber tests I would never have got it to work if I hadn't found
+Sebas LG's project ["CleanGUITestingArchitecture"](https://github.com/sebaslogen/CleanGUITestArchitecture)
+
+## License
+This content is released under the MIT License: http://opensource.org/licenses/MIT

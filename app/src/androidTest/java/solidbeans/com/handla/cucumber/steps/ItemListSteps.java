@@ -1,5 +1,6 @@
 package solidbeans.com.handla.cucumber.steps;
 
+import android.app.Application;
 import android.content.Intent;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.matcher.ViewMatchers;
@@ -45,6 +46,7 @@ public class ItemListSteps  {
 
     @Given("^I'm looking at the shoppinglist$")
     public void lookingAtList() {
+//        mainActivityRule.getActivity().getApplication();
         mainActivityRule.launchActivity(new Intent());
     }
 
@@ -54,13 +56,13 @@ public class ItemListSteps  {
                 .perform(typeText(text + "\n"), closeSoftKeyboard());
     }
 
-    @Then("^I should see \"([^\"]*)\" items in the list$")
+    @Then("^I should see (\\d+) items in the list$")
     public void number_of_items_in_the_list(int noOfItems) {
         onView(withId(R.id.recyclerview_handla))
                 .check(new RecyclerViewItemCountAssertion(noOfItems));
     }
 
-    @And("^item number \"([^\"]*)\" should read \"([^\"]*)\"$")
+    @And("^item number (\\d+) should read \"([^\"]*)\"$")
     public void item_number_n_should_read(int itemNo, String text) {
         onView(withId(R.id.recyclerview_handla))
                 .check(new RecyclerViewItemTextAssertion(itemNo - 1, text));

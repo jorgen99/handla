@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 abstract class RecyclerViewAssertion implements ViewAssertion {
-    ListAdapter listAdapter;
+    ItemsAdapter itemsAdapter;
 
     @Override
     public void check(View view, NoMatchingViewException noViewFoundException) {
@@ -15,6 +15,6 @@ abstract class RecyclerViewAssertion implements ViewAssertion {
         }
 
         RecyclerView recyclerView = (RecyclerView) view;
-        listAdapter = (ListAdapter) recyclerView.getAdapter();
+        itemsAdapter = (ItemsAdapter) recyclerView.getAdapter();
     }
 }

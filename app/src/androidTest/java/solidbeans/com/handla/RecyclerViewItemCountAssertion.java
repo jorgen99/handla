@@ -16,6 +16,6 @@ public class RecyclerViewItemCountAssertion extends RecyclerViewAssertion {
     @Override
     public void check(View view, NoMatchingViewException noViewFoundException) {
         super.check(view, noViewFoundException);
-        assertThat(listAdapter.getItemCount(), is(expectedCount));
+        assertThat(itemsAdapter.getItemCount(), is(expectedCount));
     }
 }
