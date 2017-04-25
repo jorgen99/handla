@@ -1,8 +1,7 @@
 package solidbeans.com.handla.cucumber.steps;
 
-import android.app.Application;
 import android.content.Intent;
-import android.support.test.espresso.Espresso;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -20,6 +19,8 @@ import solidbeans.com.handla.MainActivity;
 import solidbeans.com.handla.R;
 import solidbeans.com.handla.RecyclerViewItemCountAssertion;
 import solidbeans.com.handla.RecyclerViewItemTextAssertion;
+import solidbeans.com.handla.TestApp;
+import solidbeans.com.handla.db.DaoSession;
 import solidbeans.com.handla.util.ActivityFinisher;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -34,6 +35,14 @@ public class ItemListSteps  {
     public ActivityTestRule<MainActivity> mainActivityRule
             = new ActivityTestRule<>(MainActivity.class, false, false);
 
+    @Before
+    public void setUp() throws Exception {
+        TestApp app = (TestApp) InstrumentationRegistry.getTargetContext()
+                .getApplicationContext();
+        DaoSession daoSession = app.getDbComponent().getDaoSession();
+        daoSession.getItemDao().deleteAll();
+    }
+
     /**
      * All the clean up of application's data and state after each scenario must happen here
      * The last call of this method should always be the call to parent's tear down method
@@ -46,7 +55,6 @@ public class ItemListSteps  {
 
     @Given("^I'm looking at the shoppinglist$")
     public void lookingAtList() {
-//        mainActivityRule.getActivity().getApplication();
         mainActivityRule.launchActivity(new Intent());
     }
 

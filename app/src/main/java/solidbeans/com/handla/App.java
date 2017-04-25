@@ -2,27 +2,27 @@ package solidbeans.com.handla;
 
 import android.app.Application;
 
-import org.greenrobot.greendao.database.Database;
+import solidbeans.com.handla.di.AppModule;
+import solidbeans.com.handla.di.DaggerDbComponent;
+import solidbeans.com.handla.di.DbComponent;
+import solidbeans.com.handla.di.DbModule;
 
-import solidbeans.com.handla.db.DaoMaster;
-import solidbeans.com.handla.db.DaoMaster.DevOpenHelper;
-import solidbeans.com.handla.db.DaoSession;
-import solidbeans.com.handla.db.DbHelper;
+public class App extends Application {
 
-public class App extends Application implements DbHelper {
-
-    private DaoSession daoSession;
+    protected DbComponent dbComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        DevOpenHelper helper = new DevOpenHelper(this, "handla-db");
-        Database db = helper.getWritableDb();
-        daoSession = new DaoMaster(db).newSession();
+        dbComponent = DaggerDbComponent.builder()
+                .appModule(new AppModule(this))
+                .dbModule(new DbModule("handla-db"))
+                .build();
     }
 
-    public DaoSession getDaoSession() {
-        return daoSession;
+    public DbComponent getDbComponent() {
+        return dbComponent;
     }
+
+
 }

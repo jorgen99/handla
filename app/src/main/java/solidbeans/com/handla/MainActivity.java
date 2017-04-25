@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Random;
 
 import solidbeans.com.handla.db.DaoSession;
-import solidbeans.com.handla.db.DbHelper;
 import solidbeans.com.handla.db.Item;
 import solidbeans.com.handla.db.ItemDao;
 
@@ -34,13 +33,16 @@ public class MainActivity extends AppCompatActivity {
     private ItemDao itemDao;
     private Query<Item> itemQuery;
 
+    private DaoSession daoSession;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        daoSession = ((App) getApplication()).getDbComponent().getDaoSession();
+
         setContentView(R.layout.activity_list);
         setUpView();
 
-        DaoSession daoSession = ((DbHelper) getApplication()).getDaoSession();
         itemDao = daoSession.getItemDao();
         itemQuery = itemDao.queryBuilder().orderAsc(ItemDao.Properties.Text).build();
 

@@ -81,4 +81,15 @@ public class Item {
     public boolean getChecked() {
         return this.checked;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", quantity=" + quantity +
+                ", quantityType='" + quantityType + '\'' +
+                ", checked=" + checked +
+                '}';
+    }
 }
