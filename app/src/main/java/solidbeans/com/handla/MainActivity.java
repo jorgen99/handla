@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import solidbeans.com.handla.db.Category;
+import solidbeans.com.handla.db.CategoryDao;
 import solidbeans.com.handla.db.DaoSession;
 import solidbeans.com.handla.db.Item;
 import solidbeans.com.handla.db.ItemDao;
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private Query<Item> itemQuery;
 
     private DaoSession daoSession;
+    private Query<Category> categoryQuery;
+    private CategoryDao categoryDao;
+    private static final String logTag = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +49,41 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         setUpView();
 
-        itemDao = daoSession.getItemDao();
-        itemQuery = itemDao.queryBuilder().orderAsc(ItemDao.Properties.Text).build();
+        createItemQuery();
+        createCategoryQuery();
+        populateMockCategories();
+        debugLogCategories();
 
         populateItemList();
+    }
+
+    private void debugLogCategories() {
+        List<Category> list = categoryQuery.list();
+        for (Category category : list) {
+            Log.d(logTag, "category: " + category);
+        }
+    }
+
+    private void populateMockCategories() {
+        List<String> categories = Arrays.asList(
+                "Fruits & Vegetables", "Bread", "Spices",
+                "Meat", "Cheese", "Dairy", "Beverages");
+        for (String category : categories) {
+            Category c = new Category(category);
+            categoryDao.save(c);
+        }
+
+    }
+
+    private void createCategoryQuery() {
+        categoryDao = daoSession.getCategoryDao();
+        categoryQuery = categoryDao.queryBuilder().orderAsc(CategoryDao.Properties.Name).build();
+
+    }
+
+    private void createItemQuery() {
+        itemDao = daoSession.getItemDao();
+        itemQuery = itemDao.queryBuilder().orderAsc(ItemDao.Properties.Text).build();
     }
 
     private void setUpView() {

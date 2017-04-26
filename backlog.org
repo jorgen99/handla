@@ -1,7 +1,8 @@
- - [ ] Store list in SQL lite
- - [ ] Typeahead when entering items
  - [ ] Hard-coded categories
- - [ ] Add categories to list
+ - [ ] Items have an ItemType
+ - [ ] An ItemType belongs to a Category
+ - [ ] Items belong to an ItemList
+ - [ ] Add category dividers to list
  - [ ] "Done" category at the end of list
  - [ ] Move checked items to the "Done" category
  - [ ] "Delete all"-button in the "Done" category
@@ -14,6 +15,7 @@
  - [ ] Manage categories in menu
  - [ ] Enter new category
  - [ ] Drag and drop ordering of categories
+ - [ ] Typeahead when entering items
 
 
  - [ ] Manage recipes in menu
@@ -22,6 +24,7 @@
  - [ ] Manage "This week"
 
 * done
+ - [X] Store list in SQL lite
  - [X] Drive espresso from cucumber
  - [X] Testing with espresso
  - [X] Text field to enter new items
