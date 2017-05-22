@@ -1,6 +1,5 @@
- - [ ] Hard-coded categories
- - [ ] Items have an ItemType
  - [ ] An ItemType belongs to a Category
+ - [ ] Items have an ItemType
  - [ ] Items belong to an ItemList
  - [ ] Add category dividers to list
  - [ ] "Done" category at the end of list
@@ -24,6 +23,7 @@
  - [ ] Manage "This week"
 
 * done
+ - [X] Hard-coded categories
  - [X] Store list in SQL lite
  - [X] Drive espresso from cucumber
  - [X] Testing with espresso

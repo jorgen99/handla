@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.Query;
 
 import java.util.Arrays;
@@ -21,12 +22,18 @@ import java.util.Random;
 
 import solidbeans.com.handla.db.Category;
 import solidbeans.com.handla.db.CategoryDao;
+import solidbeans.com.handla.db.DaoMaster;
 import solidbeans.com.handla.db.DaoSession;
 import solidbeans.com.handla.db.Item;
 import solidbeans.com.handla.db.ItemDao;
+import solidbeans.com.handla.db.ItemType;
+import solidbeans.com.handla.db.ItemTypeDao;
+import solidbeans.com.handla.db.MockDB;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
+
+    private static final String logTag = MainActivity.class.getSimpleName();
 
     private EditText addItem;
     private RecyclerView recyclerView;
@@ -39,51 +46,70 @@ public class MainActivity extends AppCompatActivity {
     private DaoSession daoSession;
     private Query<Category> categoryQuery;
     private CategoryDao categoryDao;
-    private static final String logTag = MainActivity.class.getSimpleName();
+    private ItemTypeDao itemTypeDao;
+    private Query<ItemType> itemTypeQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dropItemTables();
         daoSession = ((App) getApplication()).getDbComponent().getDaoSession();
+
+
 
         setContentView(R.layout.activity_list);
         setUpView();
 
         createItemQuery();
+
         createCategoryQuery();
         populateMockCategories();
-        debugLogCategories();
+        debugLogEntities(categoryQuery, "category");
+//
+        creteItemTypeQuery();
+        populateItemTypes();
+        debugLogEntities(itemTypeQuery, "item_type");
 
         populateItemList();
     }
 
-    private void debugLogCategories() {
-        List<Category> list = categoryQuery.list();
-        for (Category category : list) {
-            Log.d(logTag, "category: " + category);
+    private <T> void debugLogEntities(Query<T> query, String type) {
+        List<T> list = query.list();
+        for (T entity : list) {
+            Log.d(logTag, type + ": " + entity);
         }
-    }
-
-    private void populateMockCategories() {
-        List<String> categories = Arrays.asList(
-                "Fruits & Vegetables", "Bread", "Spices",
-                "Meat", "Cheese", "Dairy", "Beverages");
-        for (String category : categories) {
-            Category c = new Category(category);
-            categoryDao.save(c);
-        }
-
     }
 
     private void createCategoryQuery() {
         categoryDao = daoSession.getCategoryDao();
-        categoryQuery = categoryDao.queryBuilder().orderAsc(CategoryDao.Properties.Name).build();
+        categoryQuery = categoryDao.queryBuilder()
+                .orderAsc(CategoryDao.Properties.Name)
+                .build();
 
+    }
+
+    private void populateMockCategories() {
+        categoryDao.deleteAll();
+        MockDB.constructCategories(categoryDao);
+    }
+
+    private void populateItemTypes() {
+        itemTypeDao.deleteAll();
+        MockDB.constructItemTypes(categoryQuery.list(), itemTypeDao);
+    }
+
+    private void creteItemTypeQuery() {
+        itemTypeDao = daoSession.getItemTypeDao();
+        itemTypeQuery = itemTypeDao.queryBuilder()
+                .orderAsc(ItemTypeDao.Properties.Name)
+                .build();
     }
 
     private void createItemQuery() {
         itemDao = daoSession.getItemDao();
-        itemQuery = itemDao.queryBuilder().orderAsc(ItemDao.Properties.Text).build();
+        itemQuery = itemDao.queryBuilder()
+//                .orderAsc(ItemDao.Properties.)
+                .build();
     }
 
     private void setUpView() {
@@ -129,10 +155,36 @@ public class MainActivity extends AppCompatActivity {
         itemsAdapter.setHandlaItems(names);
     }
 
+    private void dropItemTables() {
+        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(getApplication(), "handla-db");
+        Database db = helper.getWritableDb();
+        DaoMaster.dropAllTables(db, true);
+        DaoMaster.createAllTables(db, false);
+//        CategoryDao.dropTable(db, true);
+//        ItemTypeDao.dropTable(db, true);
+//        ItemDao.dropTable(db, true);
+    }
+
     @NonNull
     private Item itemFrom(String text) {
         Item item = new Item();
-        item.setText(text);
+        ItemType itemType = itemTypeDao.queryBuilder()
+                .where(ItemTypeDao.Properties.Name.eq(text))
+                .orderAsc(ItemTypeDao.Properties.Name)
+                .unique();
+
+        if(itemType == null) {
+            itemType = new ItemType();
+            itemType.setName(text);
+            Category uncategorized = categoryDao.queryBuilder()
+                    .where(CategoryDao.Properties.Ordinal.eq(0))
+                    .build()
+                    .unique();
+            itemType.setCategory(uncategorized);
+            itemTypeDao.save(itemType);
+        }
+        item.setItemType(itemType);
+
         String type = randomQuantityType();
         item.setQuantityType(type);
         int quantity = new Random().nextInt(9) + 1;

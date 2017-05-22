@@ -36,7 +36,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     @Override
     public void onBindViewHolder(ItemViewHolder viewHolder, int position) {
         Item item = handlaItems.get(position);
-        viewHolder.itemText.setText(item.getText());
+        viewHolder.itemText.setText(item.getItemType().getName());
         viewHolder.itemQuantity.setText(item.quantity());
         viewHolder.checkBox.setChecked(item.isChecked());
     }

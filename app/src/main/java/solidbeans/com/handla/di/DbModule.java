@@ -26,5 +26,6 @@ public class DbModule {
         DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(application, dbName);
         Database db = helper.getWritableDb();
         return new DaoMaster(db).newSession();
+
     }
 }

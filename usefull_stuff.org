@@ -1,6 +1,7 @@
 * Espresso Cheet Sheet
 https://google.github.io/android-testing-support-library/downloads/espresso-cheat-sheet-2.1.0.pdf
-
+* Espresso recorder
+https://developer.android.com/studio/test/espresso-test-recorder.html
 * Show hide soft keyboard
 // Show 
 InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
@@ -15,3 +16,16 @@ imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 ContentProvider
 Fragments and DialogFragments
 SQLite or Realm
+
+* adb
+
+adb devices
+
+adb -s <device_id> uninstall foo.bar.baz.app
+
+adb -s <device_id> install foo.apk
+
+adb shell
+
+
+51b3f23d

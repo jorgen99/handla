@@ -18,6 +18,6 @@ public class RecyclerViewItemTextAssertion extends RecyclerViewAssertion {
     @Override
     public void check(View view, NoMatchingViewException noViewFoundException) {
         super.check(view, noViewFoundException);
-        assertThat(itemsAdapter.itemAt(position).getText(), is(expectedText));
+        assertThat(itemsAdapter.itemAt(position).getItemType().getName(), is(expectedText));
     }
 }
