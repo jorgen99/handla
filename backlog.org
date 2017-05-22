@@ -1,5 +1,3 @@
- - [ ] An ItemType belongs to a Category
- - [ ] Items have an ItemType
  - [ ] Items belong to an ItemList
  - [ ] Add category dividers to list
  - [ ] "Done" category at the end of list
@@ -23,6 +21,8 @@
  - [ ] Manage "This week"
 
 * done
+ - [X] An ItemType belongs to a Category
+ - [X] Items have an ItemType
  - [X] Hard-coded categories
  - [X] Store list in SQL lite
  - [X] Drive espresso from cucumber

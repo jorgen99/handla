@@ -186,11 +186,23 @@ public class Item {
 
 
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", itemType__resolvedKey=" + itemType__resolvedKey +
+                ", itemType=" + itemType +
+                ", itemTypeId=" + itemTypeId +
+                ", quantity=" + quantity +
+                ", quantityType='" + quantityType + '\'' +
+                ", checked=" + checked +
+                '}';
+    }
+
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 881068859)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getItemDao() : null;
     }
-
 }

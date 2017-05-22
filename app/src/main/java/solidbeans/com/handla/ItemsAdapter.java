@@ -8,22 +8,12 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.LinkedList;
-
+import solidbeans.com.handla.db.DaoSession;
 import solidbeans.com.handla.db.Item;
 
 class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 
-    private LinkedList<Item> handlaItems;
-
-    void addItem(Item item) {
-        this.handlaItems.addFirst(item);
-        notifyDataSetChanged();
-    }
-
-    Item itemAt(int position) {
-        return handlaItems.get(position);
-    }
+    private ShoppingList shoppingList;
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -35,7 +25,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(ItemViewHolder viewHolder, int position) {
-        Item item = handlaItems.get(position);
+        Item item = shoppingList.itemAt(position);
         viewHolder.itemText.setText(item.getItemType().getName());
         viewHolder.itemQuantity.setText(item.quantity());
         viewHolder.checkBox.setChecked(item.isChecked());
@@ -43,12 +33,25 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 
     @Override
     public int getItemCount() {
-        return handlaItems == null ? 0 : handlaItems.size();
+        return shoppingList == null ? 0 : shoppingList.size();
     }
 
-    void setHandlaItems(LinkedList<Item> handlaItems) {
-        this.handlaItems = handlaItems;
+    void loadItems(DaoSession daoSession) {
+        shoppingList.init(daoSession);
         notifyDataSetChanged();
+    }
+
+    void addItemFrom(String text) {
+        shoppingList.addItemFrom(text);
+        notifyDataSetChanged();
+    }
+
+    Item itemAt(int position) {
+        return shoppingList.itemAt(position);
+    }
+
+    void setShoppingList(ShoppingList shoppingList) {
+        this.shoppingList = shoppingList;
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {

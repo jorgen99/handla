@@ -44,7 +44,7 @@ public class ItemType {
     public ItemType(String name, Category category) {
         this.name = name;
         this.category = category;
-//        this.categoryId = category.getId();
+        this.categoryId = category.getId();
     }
 
     public Long getId() {
@@ -74,9 +74,7 @@ public class ItemType {
     @Generated(hash = 1372501278)
     private transient Long category__resolvedKey;
 
-    /**
-     * To-one relationship, resolved on first access.
-     */
+    /** To-one relationship, resolved on first access. */
     @Generated(hash = 234631651)
     public Category getCategory() {
         long __key = this.categoryId;
@@ -95,9 +93,7 @@ public class ItemType {
         return category;
     }
 
-    /**
-     * called by internal mechanisms, do not call yourself.
-     */
+    /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1927364589)
     public void setCategory(@NotNull Category category) {
         if (category == null) {
@@ -151,8 +147,10 @@ public class ItemType {
     public String toString() {
         return "ItemType{" +
                 "id=" + id +
+                ", category__resolvedKey=" + category__resolvedKey +
                 ", name='" + name + '\'' +
                 ", category=" + category +
+                ", categoryId=" + categoryId +
                 '}';
     }
 

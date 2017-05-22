@@ -1,12 +1,14 @@
 package solidbeans.com.handla.db;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MockDB {
 
+    public static final String TAG = MockDB.class.getSimpleName();
 
     public static List<Category> constructCategories(CategoryDao categoryDao) {
         String cs = catetoryString();
@@ -34,7 +36,6 @@ public class MockDB {
                 itemTypeDao.save(itemType);
             }
         }
-//        itemTypeDao.saveInTx(itemTypes);
         return itemTypes;
     }
 
@@ -71,6 +72,7 @@ public class MockDB {
         String name = parts[0];
         String cName = parts[1];
         Category c = findCategory(categories, cName);
+//        Log.d(TAG, "createItemType: category :" + c);
         return new ItemType(name, c);
     }
 
