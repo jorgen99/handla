@@ -5,6 +5,7 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Unique;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 @Entity
 public class Category {
 

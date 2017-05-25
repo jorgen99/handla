@@ -1,19 +1,18 @@
 package solidbeans.com.handla.db;
 
-import android.util.Log;
-
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 @Entity
 public class ItemList {
 
@@ -132,9 +131,7 @@ public class ItemList {
     }
 
     public Item itemAt(int position) {
-        Item item = sorted.get(position);
-//        Log.d(TAG, "itemAt(" + position + "): " + item);
-        return item;
+        return sorted.get(position);
     }
 
     public void add(Item item) {
@@ -145,11 +142,11 @@ public class ItemList {
     private void updateSorted() {
         sorted.clear();
         sorted.addAll(items);
-        sortSorted();
+        sortByCategoryOrdinal();
     }
 
-    private void sortSorted() {
-        Collections.sort(sorted, new Comparator<Item>() {
+    private void sortByCategoryOrdinal() {
+        sorted.sort(new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
                 Category c1 = o1.getItemType().getCategory();
@@ -157,9 +154,10 @@ public class ItemList {
                 int ord1 = c1 == null ? 0 : c1.getOrdinal();
                 int ord2 = c2 == null ? 0 : c2.getOrdinal();
                 int compare = ord1 - ord2;
-                if(compare != 0) {
+                if (compare != 0) {
                     return compare;
                 }
+                //If the same category put the first one first
                 return -1;
             }
         });
@@ -171,4 +169,5 @@ public class ItemList {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getItemListDao() : null;
     }
+
 }

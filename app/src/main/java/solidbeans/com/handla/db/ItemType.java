@@ -7,6 +7,7 @@ import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.NotNull;
 
+@SuppressWarnings("unused")
 @Entity
 public class ItemType {
 

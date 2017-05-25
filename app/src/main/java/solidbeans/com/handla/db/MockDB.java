@@ -1,11 +1,13 @@
 package solidbeans.com.handla.db;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public class MockDB {
 
     public static final String TAG = MockDB.class.getSimpleName();
@@ -57,17 +59,14 @@ public class MockDB {
     }
 
     @NonNull
-    static List<ItemType> createItemTypeList(List<Category> categories, String its) {
+    private static List<ItemType> createItemTypeList(List<Category> categories, String its) {
         String[] itemTypes = its.split("\n");
-        List<ItemType> reply = new ArrayList<>();
-        for (String itemType : itemTypes) {
-            ItemType it = createItemType(itemType, categories);
-            reply.add(it);
-        }
-        return reply;
+        return Arrays.stream(itemTypes)
+                .map(itemType -> createItemType(itemType, categories))
+                .collect(Collectors.toList());
     }
 
-    static ItemType createItemType(String itemType, List<Category> categories) {
+    private static ItemType createItemType(String itemType, List<Category> categories) {
         String[] parts = itemType.split(";");
         String name = parts[0];
         String cName = parts[1];
@@ -84,7 +83,6 @@ public class MockDB {
         }
         return categories.get(0);
     }
-
 
     @NonNull
     private static String catetoryString() {

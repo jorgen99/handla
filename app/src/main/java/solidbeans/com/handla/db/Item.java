@@ -7,6 +7,7 @@ import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.NotNull;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 @Entity
 public class Item {
 
@@ -44,13 +45,6 @@ public class Item {
         this.quantity = quantity;
         this.quantityType = quantityType;
         this.checked = checked;
-    }
-
-    public Item(ItemType itemType, int quantity, String quantityType) {
-        this.itemTypeId = itemType.getId();
-        this.itemType = itemType;
-        this.quantity = quantity;
-        this.quantityType = quantityType;
     }
 
     public String quantity() {
@@ -93,19 +87,13 @@ public class Item {
         return this.checked;
     }
 
-
-
     public long getItemTypeId() {
         return this.itemTypeId;
     }
 
-
-
     public void setItemTypeId(long itemTypeId) {
         this.itemTypeId = itemTypeId;
     }
-
-
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 853467355)
@@ -126,8 +114,6 @@ public class Item {
         return itemType;
     }
 
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 466046809)
     public void setItemType(@NotNull ItemType itemType) {
@@ -142,8 +128,6 @@ public class Item {
         }
     }
 
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
      * Entity must attached to an entity context.
@@ -155,8 +139,6 @@ public class Item {
         }
         myDao.delete(this);
     }
-
-
 
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
@@ -170,8 +152,6 @@ public class Item {
         myDao.refresh(this);
     }
 
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
      * Entity must attached to an entity context.
@@ -183,8 +163,6 @@ public class Item {
         }
         myDao.update(this);
     }
-
-
 
     @Override
     public String toString() {
