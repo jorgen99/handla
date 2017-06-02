@@ -42,7 +42,7 @@ public class MockDB {
     }
 
     @NonNull
-    static List<Category> createCategoryList(String cs) {
+    public static List<Category> createCategoryList(String cs) {
         String[] categories = cs.split("\n");
         List<Category> reply = new ArrayList<>();
         for (String category : categories) {
@@ -53,7 +53,7 @@ public class MockDB {
     }
 
     @NonNull
-    static Category createCategory(String category) {
+    public static Category createCategory(String category) {
         String[] parts = category.split(";");
         return new Category(parts[1], Integer.parseInt(parts[0]), parts[2]);
     }

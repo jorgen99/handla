@@ -1,32 +1,32 @@
-package solidbeans.com.handla.db;
+package solidbeans.com.handla.test;
 
-import android.content.Context;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 
-import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.Query;
-import org.greenrobot.greendao.test.DbTest;
+import org.greenrobot.greendao.test.AbstractDaoSessionTest;
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import solidbeans.com.handla.MainActivity;
-import solidbeans.com.handla.di.AppModule;
-import solidbeans.com.handla.di.DaggerDbComponent;
-import solidbeans.com.handla.di.DbComponent;
-import solidbeans.com.handla.di.DbModule;
+import solidbeans.com.handla.db.Category;
+import solidbeans.com.handla.db.CategoryDao;
+import solidbeans.com.handla.db.DaoMaster;
+import solidbeans.com.handla.db.DaoSession;
+import solidbeans.com.handla.db.ItemType;
+import solidbeans.com.handla.db.ItemTypeDao;
+import solidbeans.com.handla.db.MockDB;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertThat;
 
-@Ignore
-public class MockDBTest {
+@RunWith(AndroidJUnit4.class)
+public class MockDBTest extends AbstractDaoSessionTest<DaoMaster, DaoSession> {
 
     private DaoSession daoSession;
     private CategoryDao categoryDao;
@@ -34,14 +34,23 @@ public class MockDBTest {
     private ItemTypeDao itemTypeDao;
     private Query<ItemType> itemTypeQuery;
 
+    public MockDBTest() {
+        super(DaoMaster.class);
+    }
+
+    @Rule
+    public ActivityTestRule<MainActivity> mainActivityRule
+            = new ActivityTestRule<>(MainActivity.class, false, false);
+
     @Before
     public void setUp() throws Exception {
-        Context context = mock(MainActivity.class);
+        super.setUp();
+//        Context context = mock(MainActivity.class);
 //        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, "unit-test");
 //        Database db = helper.getWritableDb();
-        daoSession = DaoMaster.newDevSession(context, "unit-test");
+//        daoSession = DaoMaster.newDevSession(context, "unit-test");
 
-        categoryDao = this.daoSession.getCategoryDao();
+        categoryDao = daoSession.getCategoryDao();
         categoryQuery = categoryDao.queryBuilder()
                 .orderAsc(CategoryDao.Properties.Name)
                 .build();
@@ -52,12 +61,12 @@ public class MockDBTest {
     }
 
     @Test
-    public void it_should_create_a_category_from_a_semicolon_separated_string() throws Exception {
+    public void test_it_should_create_a_category_from_a_semicolon_separated_string() throws Exception {
         String category = "5;Kryddor & Olja;#0665AF";
         Category c = MockDB.createCategory(category);
         assertThat(c.getName(), is(equalTo("Kryddor & Olja")));
         assertThat(c.getHexColor(), is(equalTo("#0665AF")));
-        assertThat(c.getOrdinal(), is(5));
+        assertThat(c.getOrdinal(), is(4));
     }
 
     @Test
