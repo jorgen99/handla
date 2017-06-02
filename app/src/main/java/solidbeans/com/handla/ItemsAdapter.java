@@ -1,6 +1,7 @@
 package solidbeans.com.handla;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,14 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import solidbeans.com.handla.db.Category;
 import solidbeans.com.handla.db.DaoSession;
 import solidbeans.com.handla.db.Item;
 
 class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
+
+    @SuppressWarnings("unused")
+    public static final String TAG = ItemsAdapter.class.getSimpleName();
 
     private ShoppingList shoppingList;
 
@@ -29,6 +34,11 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         viewHolder.itemText.setText(item.getItemType().getName());
         viewHolder.itemQuantity.setText(item.quantity());
         viewHolder.checkBox.setChecked(item.isChecked());
+        Category category = item.getItemType().getCategory();
+        String hexColor = category.getHexColor();
+//        Log.d(TAG, "color is: " + hexColor + ", for category: " + category.getName());
+        int color = Color.parseColor(hexColor);
+        viewHolder.marginColor.setBackgroundColor(color);
     }
 
     @Override
@@ -58,12 +68,14 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         final TextView itemText;
         final TextView itemQuantity;
         final CheckBox checkBox;
+        final View marginColor;
 
         ItemViewHolder(View itemView) {
             super(itemView);
-            itemText = (TextView) itemView.findViewById(R.id.item_text);
-            itemQuantity = (TextView) itemView.findViewById(R.id.item_quantity);
-            checkBox = (CheckBox) itemView.findViewById(R.id.item_checkbox);
+            itemText = itemView.findViewById(R.id.item_text);
+            itemQuantity = itemView.findViewById(R.id.item_quantity);
+            checkBox = itemView.findViewById(R.id.item_checkbox);
+            marginColor = itemView.findViewById(R.id.item_margin_color);
         }
     }
 }
