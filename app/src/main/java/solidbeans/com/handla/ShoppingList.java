@@ -65,7 +65,7 @@ class ShoppingList {
         DaoMaster.createAllTables(db, false);
     }
 
-    Item itemAt(int position) {
+    Object itemAt(int position) {
         return handlaItems.itemAt(position);
     }
 

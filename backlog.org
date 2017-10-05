@@ -1,32 +1,35 @@
- - [ ] Add category dividers to list
- - [ ] "Done" category at the end of list
- - [ ] Move checked items to the "Done" category
- - [ ] "Delete all"-button in the "Done" category
- - [ ] Drag and drop handles in list item
- - [ ] Implement drag and drop
- - [ ] Tap item to view item options
- - [ ] Select category in item options
- - [ ] Select quantity in item option
- - [ ] Hamburger menu (Navigation drawer)
- - [ ] Manage categories in menu
- - [ ] Enter new category
- - [ ] Drag and drop ordering of categories
- - [ ] Typeahead when entering items
+* TODO "Done" category at the end of list
+* TODO Move checked items to the "Done" category
+* TODO "Delete all"-button in the "Done" category
+* TODO Drag and drop handles in list item
+* TODO Implement drag and drop
+* TODO Tap item to view item options
+* TODO Select category in item options
+* TODO Select quantity in item option
+* TODO Hamburger menu (Navigation drawer)
+* TODO Manage categories in menu
+* TODO Enter new category
+* TODO Drag and drop ordering of categories
+* TODO Typeahead when entering items
+
+* TODO Manage recipes in menu
+* TODO Manage cloud sync in menu
+* TODO Manage sharing in menu
+* TODO Manage "This week"
 
 
- - [ ] Manage recipes in menu
- - [ ] Manage cloud sync in menu
- - [ ] Manage sharing in menu
- - [ ] Manage "This week"
+* DONE Add category dividers to list
+  https://github.com/google/iosched/blob/master/lib/src/main/java/com/google/samples/apps/iosched/schedule/ScheduleDayAdapter.java
+  https://codelabs.developers.google.com/codelabs/material-design-style/index.html#0
+  https://android-developers.googleblog.com/2015/05/android-design-support-library.html
 
-* done
- - [X] Items belong to an ItemList
- - [X] An ItemType belongs to a Category
- - [X] Items have an ItemType
- - [X] Hard-coded categories
- - [X] Store list in SQL lite
- - [X] Drive espresso from cucumber
- - [X] Testing with espresso
- - [X] Text field to enter new items
- - [X] Add checkbox to list item
- - [X] Sub-title with quantity in list 
+* DONE Items belong to an ItemList
+* DONE An ItemType belongs to a Category
+* DONE Items have an ItemType
+* DONE Hard-coded categories
+* DONE Store list in SQL lite
+* DONE Drive espresso from cucumber
+* DONE Testing with espresso
+* DONE Text field to enter new items
+* DONE Add checkbox to list item
+* DONE Sub-title with quantity in list 

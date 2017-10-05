@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ShoppingList.CategorySeparator" parent="">
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:fontFeatureSettings">smcp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <color name="lighter_grey">#f6f6f6</color>
+
 </resources>

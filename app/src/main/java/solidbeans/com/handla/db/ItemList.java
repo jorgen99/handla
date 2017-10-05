@@ -1,5 +1,7 @@
 package solidbeans.com.handla.db;
 
+import android.util.Log;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
@@ -26,7 +28,7 @@ public class ItemList {
 
     private String name;
 
-    private transient LinkedList<Item> sorted = new LinkedList<>();
+    private transient LinkedList<Object> sorted = new LinkedList<>();
 
     /** Used to resolve relations */
     @Generated(hash = 2040040024)
@@ -130,7 +132,7 @@ public class ItemList {
         return sorted.size();
     }
 
-    public Item itemAt(int position) {
+    public Object itemAt(int position) {
         return sorted.get(position);
     }
 
@@ -143,14 +145,15 @@ public class ItemList {
         sorted.clear();
         sorted.addAll(items);
         sortByCategoryOrdinal();
+        insertCategories();
     }
 
     private void sortByCategoryOrdinal() {
-        sorted.sort(new Comparator<Item>() {
+        sorted.sort(new Comparator<Object>() {
             @Override
-            public int compare(Item o1, Item o2) {
-                Category c1 = o1.getItemType().getCategory();
-                Category c2 = o2.getItemType().getCategory();
+            public int compare(Object o1, Object o2) {
+                Category c1 = ((Item)o1).getItemType().getCategory();
+                Category c2 = ((Item)o2).getItemType().getCategory();
                 int ord1 = c1 == null ? 0 : c1.getOrdinal();
                 int ord2 = c2 == null ? 0 : c2.getOrdinal();
                 int compare = ord1 - ord2;
@@ -161,6 +164,34 @@ public class ItemList {
                 return -1;
             }
         });
+    }
+
+    private void insertCategories() {
+        Item last = null;
+        for (int i = 0; i < sorted.size(); i++) {
+            Log.d(TAG, "i: " + i);
+            Object current = sorted.get(i);
+            Log.d(TAG, current.getClass().getName());
+            if (i == 0) {
+                Item c = (Item) current;
+                last = c;
+                sorted.add(i, c.getItemType().getCategory());
+                i++;
+                continue;
+            }
+
+            Item c = (Item) current;
+            Log.d(TAG, "c: " + c.getItemType().getName());
+            Item l = (Item) last;
+            Log.d(TAG, "l: " + l.getItemType().getName());
+            if (c.getItemType().getCategoryId() != l.getItemType().getCategoryId()) {
+                last = c;
+                sorted.add(i, c.getItemType().getCategory());
+                i++;
+            }
+
+        }
+
     }
 
     /** called by internal mechanisms, do not call yourself. */

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="36dp"
+    android:clickable="false">
+
+    <!-- background color for left margin -->
+    <View
+        android:id="@+id/category_margin_color"
+        android:layout_alignParentStart="true"
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:background="#dadada"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        />
+
+    <!--This View serves as a visual divider between list items-->
+    <View
+        android:id="@+id/category_spacer"
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/category_margin_color"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp" />
+
+
+    <TextView
+        android:id="@+id/category_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/category_spacer"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/category_name"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+
+</RelativeLayout>
