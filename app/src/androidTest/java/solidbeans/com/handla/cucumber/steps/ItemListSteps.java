@@ -9,6 +9,7 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -20,7 +21,9 @@ import solidbeans.com.handla.R;
 import solidbeans.com.handla.RecyclerViewItemCountAssertion;
 import solidbeans.com.handla.RecyclerViewItemTextAssertion;
 import solidbeans.com.handla.TestApp;
+import solidbeans.com.handla.db.Category;
 import solidbeans.com.handla.db.DaoSession;
+import solidbeans.com.handla.db.Item;
 import solidbeans.com.handla.util.ActivityFinisher;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -70,9 +73,16 @@ public class ItemListSteps  {
                 .check(new RecyclerViewItemCountAssertion(noOfItems));
     }
 
-    @And("^item number (\\d+) should read \"([^\"]*)\"$")
+    @And("^item number (\\d+) should be an item of type \"([^\"]*)\"$")
     public void item_number_n_should_read(int itemNo, String text) {
         onView(withId(R.id.recyclerview_handla))
-                .check(new RecyclerViewItemTextAssertion(itemNo - 1, text));
+                .check(new RecyclerViewItemTextAssertion(itemNo - 1, text, Item.class));
+    }
+
+    @And("^item number (\\d+) should be a category header named \"([^\"]*)\"$")
+    public void itemNumberShouldBeACategoryHeaderNamed(int itemNo, String name) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        onView(withId(R.id.recyclerview_handla))
+                .check(new RecyclerViewItemTextAssertion(itemNo - 1, name, Category.class));
     }
 }
