@@ -5,6 +5,8 @@ import android.support.test.espresso.ViewAssertion;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import solidbeans.com.handla.view.list.ItemsAdapter;
+
 abstract class RecyclerViewAssertion implements ViewAssertion {
     ItemsAdapter itemsAdapter;
 

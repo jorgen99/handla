@@ -1,8 +1,5 @@
-* TODO "Done" category at the end of list
-* TODO Move checked items to the "Done" category
 * TODO "Delete all"-button in the "Done" category
-* TODO Drag and drop handles in list item
-* TODO Implement drag and drop
+* TODO Typeahead when entering items
 * TODO Tap item to view item options
 * TODO Select category in item options
 * TODO Select quantity in item option
@@ -10,7 +7,8 @@
 * TODO Manage categories in menu
 * TODO Enter new category
 * TODO Drag and drop ordering of categories
-* TODO Typeahead when entering items
+* TODO Drag and drop handles in list item
+* TODO Implement drag and drop
 
 * TODO Manage recipes in menu
 * TODO Manage cloud sync in menu
@@ -18,6 +16,8 @@
 * TODO Manage "This week"
 
 
+* DONE "Done" category at the end of list
+* DONE Move checked items to the "Done" category
 * DONE Add category dividers to list
   https://github.com/google/iosched/blob/master/lib/src/main/java/com/google/samples/apps/iosched/schedule/ScheduleDayAdapter.java
   https://codelabs.developers.google.com/codelabs/material-design-style/index.html#0

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_layout"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="50dp"
     android:clickable="true">
 
     <!-- background color for left margin -->
@@ -54,12 +54,5 @@
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         android:text="1 paket"
         />
-    <!--This View serves as a visual divider between list items-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#dadada"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
 
 </RelativeLayout>

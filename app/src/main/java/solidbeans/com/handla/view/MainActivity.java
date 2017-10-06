@@ -1,4 +1,4 @@
-package solidbeans.com.handla;
+package solidbeans.com.handla.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,38 +10,44 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import solidbeans.com.handla.db.DaoSession;
+import solidbeans.com.handla.App;
+import solidbeans.com.handla.R;
+import solidbeans.com.handla.db.Db;
+import solidbeans.com.handla.db.ShoppingList;
+import solidbeans.com.handla.view.list.ItemsAdapter;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
 
-    private static final String logTag = MainActivity.class.getSimpleName();
+    @SuppressWarnings("unused")
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private EditText addItem;
     private RecyclerView recyclerView;
     private ItemsAdapter itemsAdapter;
+    @SuppressWarnings("unused")
     private TextView errorMessage;
+    @SuppressWarnings("unused")
     private ProgressBar spinner;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaoSession daoSession = ((App) getApplication()).getDbComponent().getDaoSession();
+        Db db = ((App) getApplication()).getDb();
 
         setContentView(R.layout.activity_list);
         setUpView();
-        ShoppingList shoppingList = new ShoppingList();
-        shoppingList.dropItemTables(getApplication(), "handla-db");
+        ShoppingList shoppingList = db.currentShoppingList();
         itemsAdapter.setShoppingList(shoppingList);
-        itemsAdapter.loadItems(daoSession);
+        itemsAdapter.notifyDataSetChanged();
     }
 
     private void setUpView() {
         setUpAddItem();
-        recyclerView = findViewById(R.id.recyclerview_handla);
         errorMessage = findViewById(R.id.error_message);
 
+        recyclerView = findViewById(R.id.recyclerview_handla);
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

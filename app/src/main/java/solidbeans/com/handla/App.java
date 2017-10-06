@@ -1,27 +1,25 @@
 package solidbeans.com.handla;
 
 import android.app.Application;
+import android.util.Log;
 
-import solidbeans.com.handla.di.AppModule;
-import solidbeans.com.handla.di.DaggerDbComponent;
-import solidbeans.com.handla.di.DbComponent;
-import solidbeans.com.handla.di.DbModule;
+import solidbeans.com.handla.db.Db;
+import solidbeans.com.handla.db.FileDb;
 
 public class App extends Application {
 
-    protected DbComponent dbComponent;
+    private Db db;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        dbComponent = DaggerDbComponent.builder()
-                .appModule(new AppModule(this))
-                .dbModule(new DbModule("handla-db"))
-                .build();
+        Log.d("App", "onCreate");
+        db = new FileDb("real");
+        db.defaultData();
     }
 
-    public DbComponent getDbComponent() {
-        return dbComponent;
+    public Db getDb() {
+        return db;
     }
 
 

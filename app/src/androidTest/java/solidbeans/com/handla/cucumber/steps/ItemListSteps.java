@@ -9,20 +9,19 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import solidbeans.com.handla.MainActivity;
+import solidbeans.com.handla.view.MainActivity;
 import solidbeans.com.handla.R;
 import solidbeans.com.handla.RecyclerViewItemCountAssertion;
 import solidbeans.com.handla.RecyclerViewItemTextAssertion;
 import solidbeans.com.handla.TestApp;
 import solidbeans.com.handla.db.Category;
-import solidbeans.com.handla.db.DaoSession;
+import solidbeans.com.handla.db.Db;
 import solidbeans.com.handla.db.Item;
 import solidbeans.com.handla.util.ActivityFinisher;
 
@@ -42,8 +41,8 @@ public class ItemListSteps  {
     public void setUp() throws Exception {
         TestApp app = (TestApp) InstrumentationRegistry.getTargetContext()
                 .getApplicationContext();
-        DaoSession daoSession = app.getDbComponent().getDaoSession();
-        daoSession.getItemDao().deleteAll();
+        Db db = app.getDb();
+        db.dropAllData();
     }
 
     /**

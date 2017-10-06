@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
@@ -23,6 +22,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        unitTests.returnDefaultValues = true
     }
 }
 
@@ -49,24 +52,24 @@ def getTestTags() {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta2'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:1.10.19'
     // Espresso
-    androidTestCompile('com.android.support.test:runner:0.5') {
+    androidTestImplementation('com.android.support.test:runner:0.5') {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
-    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
@@ -74,16 +77,15 @@ dependencies {
         exclude group: 'com.android.support', module: 'design'
     }
     // Cucumber
-    androidTestCompile('info.cukes:cucumber-android:1.2.4') {
+    androidTestImplementation('info.cukes:cucumber-android:1.2.4') {
         exclude module: 'cucumber-jvm-deps'
     }
-    androidTestCompile('info.cukes:cucumber-picocontainer:1.2.4') {
+    androidTestImplementation('info.cukes:cucumber-picocontainer:1.2.4') {
         exclude module: 'cucumber-jvm-deps'
     }
-    androidTestCompile 'info.cukes:cucumber-jvm-deps:1.0.5'
-    compile 'org.greenrobot:greendao:3.2.2'
-    compile 'com.google.dagger:dagger:2.2'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.2'
-    provided 'javax.annotation:jsr250-api:1.0'
-    compile 'com.google.code.gson:gson:2.8.0'
+    androidTestImplementation 'info.cukes:cucumber-jvm-deps:1.0.5'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestUtil 'com.android.support.test:orchestrator:1.0.1'
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
 }
